@@ -24,6 +24,14 @@ or item management
         activateItem($_POST['activateItem']);
     }
 
+    if(isset($_POST['sortCategories'])) {
+        sortCategory($_POST);
+    }
+
+    if(isset($_POST['sortSubcategories'])) {
+        sortSubcategories($_POST);
+    }
+
     if(isset($_POST['createItem'])) {
 
         for ($i = 1; $i <= 8; $i++ ) {
@@ -123,6 +131,14 @@ or item management
 
     if(isset($_POST['changeCategoryState'])) {
         changeCategoryState($_POST['changeCategoryState']);
+    }
+
+    if(isset($_POST['changeCategoryName'])) {
+        changeCategoryName($_POST['changeCategoryName'],$_POST['categoryName']);
+    }
+
+    if(isset($_POST['changeSubcategoryName'])) {
+        changeSubcategoryName($_POST['changeSubcategoryName'],$_POST['subcategoryName']);
     }
 
     if(isset($_POST['deleteCategory'])) {

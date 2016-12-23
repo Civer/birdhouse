@@ -24,6 +24,17 @@ function toggleSearch() {
     $("#searchDiv").slideToggle();
 }
 
+function pushDown(row) {
+    var rowId = "#"+row;
+    jQuery(rowId).next().after(jQuery(rowId));
+}
+
+function pushUp(row) {
+    var rowId = "#"+row;
+    console.log(rowId);
+    jQuery(rowId).prev().before(jQuery(rowId));
+}
+
 function activateNotification(user, admin) {
 
     Pusher.logToConsole = true;

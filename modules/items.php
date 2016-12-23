@@ -95,7 +95,7 @@ if(isset($_GET['page']) and $_GET['page']=='editItem' and $_SESSION['username'] 
     echo "<p class='paragraphTitle'>".$lang['titles']['editItem']."</p>";
 
     //Item Entry Form
-    echo '<form action="#" method="post">';
+    echo '<form action="index.php?page=manageCategory&cat='.$item['categoryId'].'" method="post">';
     echo "<p>".$lang['fields']['category'].": <b>".$category[0]['name']."</b><br />";
 
     echo "<select name='subcategory' class='inputField'>";
@@ -142,7 +142,7 @@ if(isset($_GET['page']) and $_GET['page']=='editItem' and $_SESSION['username'] 
     echo '    <p><input type="submit" value="'.$lang['buttons']['change'].'" class="button" /></p>';
     echo '</form>';
     //echo '<form action="#" method="post"><p class="center"><input type="hidden" name="deleteItem" value="'.$_GET['item'].'" /><button onclick="return confirm(\''.$lang['confirmation']['deleteItem'].'\')" class="button" id="small"/>'.$lang['buttons']['delete'].'</button></p></form>';
-    echo '<hr class="alternate" /><p><a href="index.php" class="button" id="small">'.$lang['buttons']['back'].'</a></p>';
+    echo '<hr class="alternate" /><p><a href="index.php?page=manageCategory&cat='.$item['categoryId'].'" class="button" id="small">'.$lang['buttons']['back'].'</a></p>';
     echo '</div>';
 
 }

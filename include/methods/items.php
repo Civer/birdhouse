@@ -41,6 +41,8 @@ Some of them are triggered from index and content as well.
 #   1.18        createItem($categoryId, $name, $description, $ingr1, $ingr2, $ingr3, $ingr4, $ingr5, $ingr6, $ingr7, $ingr8, $active)
 #   1.19        editItem($id, $name, $description, $ingr1, $ingr2, $ingr3, $ingr4, $ingr5, $ingr6, $ingr7, $ingr8, $active)
 #   1.20        deleteItem($id)
+#   1.21        changeCategoryName($categoryId, $categoryName)
+#   1.22        changeSubcategoryName($subcategoryId, $subcategoryName)
 #
 ##########################################################################
 ##########################################################################
@@ -69,7 +71,7 @@ Some of them are triggered from index and content as well.
         ingr4_admin, ingr5_admin, ingr6_admin, ingr7_admin, ingr8_admin,
         ingr1_show, ingr2_show, ingr3_show, ingr4_show,
         ingr5_show, ingr6_show, ingr7_show, ingr8_show,
-        active FROM items ORDER BY active, categoryId, subcategoryId DESC";
+        active FROM items ORDER BY categoryId, subcategoryId, active ASC";
 
         if($category) {
             $catByName = getCategoryByName($category);
@@ -83,7 +85,7 @@ Some of them are triggered from index and content as well.
                 ingr4_admin, ingr5_admin, ingr6_admin, ingr7_admin, ingr8_admin,
                 ingr1_show, ingr2_show, ingr3_show, ingr4_show,
                 ingr5_show, ingr6_show, ingr7_show, ingr8_show,
-                active FROM items WHERE categoryId = ".$catByName[0]['id']." ORDER BY active, categoryId, subcategoryId DESC";
+                active FROM items WHERE categoryId = ".$catByName[0]['id']." ORDER BY categoryId, subcategoryId, active  ASC";
             }
             if($catById) {
                 $sql = "SELECT id, categoryId, subcategoryId, name, description, orders, ranking,
@@ -93,7 +95,7 @@ Some of them are triggered from index and content as well.
                 ingr4_admin, ingr5_admin, ingr6_admin, ingr7_admin, ingr8_admin,
                 ingr1_show, ingr2_show, ingr3_show, ingr4_show,
                 ingr5_show, ingr6_show, ingr7_show, ingr8_show,
-                active FROM items WHERE categoryId = ".$catById[0]['id']." ORDER BY active, categoryId, subcategoryId DESC";
+                active FROM items WHERE categoryId = ".$catById[0]['id']." ORDER BY categoryId, subcategoryId, active  ASC";
             }
         }
 
@@ -246,7 +248,7 @@ Some of them are triggered from index and content as well.
     function getItemsWithSearchstring($string) {
 
         $conn = getConnection();
-        $sql = "SELECT id, categoryId, name, description, orders, ranking, ingr1, ingr2, ingr3, ingr4, ingr5, ingr6, ingr7, ingr8, active FROM items WHERE name like '%".$string."%'";
+        $sql = "SELECT id, categoryId, name, description, orders, ranking, ingr1, ingr2, ingr3, ingr4, ingr5, ingr6, ingr7, ingr8, active FROM items WHERE name like '%".$string."%' ORDER BY categoryId, subcategoryId, active DESC";
         $index = 0;
         $results = array();
 
@@ -355,7 +357,7 @@ function deactivateItem($id) {
     function getAllCategories() {
 
         $conn = getConnection();
-        $sql = "SELECT id, name, active FROM categories";
+        $sql = "SELECT id, name, active FROM categories ORDER BY menuOrder ASC";
         $index = 0;
         $results = array();
 
@@ -395,7 +397,7 @@ function deactivateItem($id) {
     function getCategoryByName($name) {
 
         $conn = getConnection();
-        $sql = "SELECT id, name, active FROM categories WHERE name = '".$name."'";
+        $sql = "SELECT id, name, active FROM categories WHERE name = '".$name."' ORDER BY menuOrder ASC";
         $index = 0;
         $results = array();
 
@@ -440,7 +442,7 @@ function deactivateItem($id) {
     function getCategoryById($id) {
 
         $conn = getConnection();
-        $sql = "SELECT id, name, active FROM categories WHERE id = '".$id."'";
+        $sql = "SELECT id, name, active FROM categories WHERE id = '".$id."' ORDER BY menuOrder ASC";
         $index = 0;
         $results = array();
 
@@ -583,7 +585,7 @@ function deleteCategory($categoryId) {
     function getSubcategories($categoryId) {
 
         $conn = getConnection();
-        $sql = "SELECT id, name, categoryId, active FROM subCategories WHERE categoryId = ".$categoryId;
+        $sql = "SELECT id, name, categoryId, active FROM subCategories WHERE categoryId = '".$categoryId."' ORDER BY menuOrder ASC";
         $index = 0;
         $results = array();
 
@@ -628,7 +630,7 @@ function deleteCategory($categoryId) {
     function getSubcategoryByName($name) {
 
         $conn = getConnection();
-        $sql = "SELECT id, name, categoryId, active FROM subCategories WHERE name = '".$name."'";
+        $sql = "SELECT id, name, categoryId, active FROM subCategories WHERE name = '".$name."' ORDER BY menuOrder ASC";
         $index = 0;
         $results = array();
 
@@ -674,7 +676,7 @@ function deleteCategory($categoryId) {
     function getSubcategoryById($id) {
 
         $conn = getConnection();
-        $sql = "SELECT id, name, categoryId, active FROM subCategories WHERE id = '".$id."'";
+        $sql = "SELECT id, name, categoryId, active FROM subCategories WHERE id = '".$id."' ORDER BY menuOrder ASC";
         $index = 0;
         $results = array();
 
@@ -947,6 +949,124 @@ function editItem($itemArray) {
         include $_SERVER['DOCUMENT_ROOT']."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
 
         echo "<p class='success'>".$lang['texts']['itemDeleted1'].$id.$lang['texts']['itemDeleted2']."</p>";
+    }
+
+##########################################################################
+
+/*
+
+   1.21 changeCategoryName($categoryId, $categoryName)
+
+   This function will change the category name
+
+*/
+
+##########################################################################
+
+    function changeCategoryName($categoryId, $categoryName) {
+
+        $conn = getConnection();
+
+        #logTxt("Trying to UPDATE an order in the database!");
+
+        $sql = "UPDATE categories SET name = '".utf8_decode($categoryName)."' WHERE id = ".$categoryId;
+
+        $conn->exec($sql);
+
+        $conn = null;
+
+        #logTxt("SQL Executed. Order Updated!");
+
+    }
+
+##########################################################################
+
+/*
+
+   1.22 changeSubcategoryName($subcategoryId, $subcategoryName)
+
+   This function will change the subcategory name
+
+*/
+
+##########################################################################
+
+    function changeSubcategoryName($subcategoryId, $subcategoryName) {
+
+        $conn = getConnection();
+
+        #logTxt("Trying to UPDATE an order in the database!");
+
+        $sql = "UPDATE subCategories SET name = '".utf8_decode($subcategoryName)."' WHERE id = '".$subcategoryId."'";
+
+        $conn->exec($sql);
+
+        $conn = null;
+
+        #logTxt("SQL Executed. Order Updated!");
+
+    }
+
+##########################################################################
+
+/*
+
+   1.23 sortCategory(Array)
+
+   This function will change the subcategory name
+
+*/
+
+##########################################################################
+
+    function sortCategory($array) {
+
+        $conn = getConnection();
+
+        #logTxt("Trying to UPDATE an order in the database!");
+        $index = 0;
+
+        foreach ($array as $value) {
+            $sql = "UPDATE categories SET menuOrder = '".$index."' WHERE id = '".$value."'";
+            $conn->exec($sql);
+            $index++;
+        }
+
+        $conn = null;
+
+        #logTxt("SQL Executed. Order Updated!");
+
+    }
+
+##########################################################################
+
+/*
+
+   1.24 sortSubcategories(Array)
+
+   This function will change the subcategory name
+
+*/
+
+##########################################################################
+
+    function sortSubcategories($array) {
+
+        $conn = getConnection();
+
+        #logTxt("Trying to UPDATE an order in the database!");
+        $index = 0;
+
+        foreach ($array as $value) {
+            $sql = "UPDATE subCategories SET menuOrder = '".$index."' WHERE id = '".$value."'";
+            $conn->exec($sql);
+            $index++;
+        }
+
+        $conn = null;
+
+        #logTxt("SQL Executed. Order Updated!");
+
     }
 
 ?>

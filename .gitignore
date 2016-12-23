@@ -37,3 +37,5 @@ ehthumbs.db
 Thumbs.db
 
 ressources/config.php
+
+logs/log.txt

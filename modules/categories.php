@@ -51,7 +51,7 @@ if(isset($_GET['page']) and $_GET['page']=='configureCategories' and $_SESSION['
     }
     echo '  </table>';
     echo '  </form><br />';
-    echo '  <a href="index.php?page=createCategory" class="button" id="small">'.$lang['buttons']['createCategory'].'</a><br /><br /> ';
+    echo '  <a href="index.php?page=createCategory" class="button" id="small">'.$lang['buttons']['createCategory'].'</a> <a href="index.php?page=sortCategories" class="button" id="small">'.$lang['buttons']['sort'].'</a><br /><br /> ';
     echo '</div>';
 }
 
@@ -75,8 +75,11 @@ if(isset($_GET['page']) and $_GET['page']=='manageCategory' and $_SESSION['usern
 
     //Items
 
-    echo "<p class='paragraphTitle'><b>".$lang['titles']['editItems']."</b></p>";
-    echo "<p>".$lang['fields']['category'].": ".$category[0]['name']."</p>";
+    echo "<p class='paragraphTitle'><b>".$lang['titles']['editCategory']."</b></p>";
+    echo '<form method="post" action="#">';
+    echo '<input type="hidden" name="changeCategoryName" value="'.$category[0]['id'].'" /><input type="text" class="inputField" name="categoryName" placeholder="'.$lang['fields']['category'].'" value="'.$category[0]['name'].'" /> <br /><button class="button" id="small"/>'.$lang['buttons']['edit'].'</button><br /><br />';
+    echo '</form>';
+    echo "<p class='paragraphTitle'><b>".$lang['titles']['editItems']."</b></p><br />";
     echo "  <table class='baseTable'>";
     echo "      <tr class='header'><td>".$lang['tableHeaders']['name']."</td><td>".$lang['tableHeaders']['state']."</td><td>".$lang['tableHeaders']['edit']."</td><td>".$lang['tableHeaders']['onoff']."</td><td>".$lang['tableHeaders']['delete']."</td></tr>";
     foreach($items as $item) {
@@ -101,14 +104,14 @@ if(isset($_GET['page']) and $_GET['page']=='manageCategory' and $_SESSION['usern
 
     }
     echo '  </table>';
-    echo '  </form><br />';
+    echo '  <br />';
     echo '  <a href="index.php?page=createItem&cat='.$_GET['cat'].'" class="button" id="small">'.$lang['buttons']['createItem'].'</a><br /><br /> ';
 
     //Subcategories
 
     echo "<p class='paragraphTitle'><b>".$lang['titles']['editSubcategories']."</b></p><br />";
     echo "  <table class='baseTable'>";
-    echo "      <tr class='header'><td>".$lang['tableHeaders']['name']."</td><td>".$lang['tableHeaders']['state']."</td>"./*<td>".$lang['tableHeaders']['edit']."</td>*/"<td>".$lang['tableHeaders']['onoff']."</td><td>".$lang['tableHeaders']['delete']."</td></tr>";
+    echo "      <tr class='header'><td>".$lang['tableHeaders']['name']."</td><td>".$lang['tableHeaders']['state']."</td><td>".$lang['tableHeaders']['edit']."</td><td>".$lang['tableHeaders']['onoff']."</td><td>".$lang['tableHeaders']['delete']."</td></tr>";
     foreach($subCategories as $subCategory) {
         if($subCategory['active']) {
             $state = $lang['states']['active'];
@@ -118,22 +121,46 @@ if(isset($_GET['page']) and $_GET['page']=='manageCategory' and $_SESSION['usern
         }
         echo '  <tr>';
         echo '      <td>'.$subCategory['name'].'</td><td>'.$state.'</td>';
-        //echo '      <td class="centered"><a href="index.php?page=editItem&item='.$subCategory['id'].'" class="button" id="small"><i class="fa fa-cog" aria-hidden="true"></i></a></td>';
+        echo '      <td class="centered"><a href="index.php?page=manageSubcategory&subCat='.$subCategory['id'].'" class="button" id="small"><i class="fa fa-cog" aria-hidden="true"></i></a></td>';
         echo '      <td class="centered"><form action="#" method="post"><p class="center"><input type="hidden" name="changeSubcategoryState" value="'.$subCategory['id'].'" /><button class="button" id="small"/><i class="fa fa-power-off" aria-hidden="true"></i></button></p></form></td>';
         echo '      <td class="centered"><form action="#" method="post"><p class="center"><input type="hidden" name="deleteSubcategory" value="'.$subCategory['id'].'" /><button onclick="return confirm(\''.$lang['confirmation']['deleteItem'].'\')" class="button" id="small"/><i class="fa fa-trash" aria-hidden="true"></i></button></p></form></td>';
         echo '  </tr>';
 
     }
     echo '  </table>';
-    echo '  </form><br />';
-    echo '  <a href="index.php?page=createSubcategory&cat='.$_GET['cat'].'" class="button" id="small">'.$lang['buttons']['createSubcategory'].'</a> <br /><br /> <a href="index.php?page=configureCategories" class="button" id="small">'.$lang['buttons']['back'].'</a> <br /><br />';
+    echo '  </form>';
+    echo '  <p><a href="index.php?page=createSubcategory&cat='.$_GET['cat'].'" class="button" id="small">'.$lang['buttons']['createSubcategory'].'</a> <a href="index.php?page=sortSubcategories&cat='.$_GET['cat'].'" class="button" id="small">'.$lang['buttons']['sort'].'</a> </p><hr class="alternate" /><p> <a href="index.php?page=configureCategories" class="button" id="small">'.$lang['buttons']['back'].'</a> </p>';
     echo '</div>';
 }
 
 ##########################################################################
 /*
 
-   3 CREATE CATEGORY Page
+   3 MANAGE SUBCATEGORY Page
+
+   Page to manage all Categories
+
+*/
+##########################################################################
+
+if(isset($_GET['page']) and $_GET['page']=='manageSubcategory' and $_SESSION['username'] and $_SESSION['useradmin'] ) {
+
+    $subCategory = getSubcategoryById($_GET['subCat']);
+
+    echo '<div class="basicPage">';
+
+    //Items
+    echo "<p class='paragraphTitle'><b>".$lang['titles']['editSubcategory']."</b></p>";
+    echo '<form method="post" action="#">';
+    echo '<p><input type="hidden" name="changeSubcategoryName" value="'.$subCategory[0]['id'].'" /><input type="text" class="inputField" name="subcategoryName" placeholder="'.$lang['fields']['subcategory'].'" value="'.$subCategory[0]['name'].'" /> <br /><button class="button" id="small"/>'.$lang['buttons']['edit'].'</button></p>';
+    echo '</form><hr class="alternate" /><p><a href="index.php?page=manageCategory&cat='.$subCategory[0]['categoryId'].'" class="button" id="small">'.$lang['buttons']['back'].'</a> </p>';
+    echo '</div>';
+}
+
+##########################################################################
+/*
+
+   4 CREATE CATEGORY Page
 
    Page to create Users
 
@@ -156,7 +183,7 @@ if(isset($_GET['page']) and $_GET['page']=='createCategory' and $_SESSION['usern
 ##########################################################################
 /*
 
-   4 CREATE SUBCATEGORY Page
+   5 CREATE SUBCATEGORY Page
 
    Page to create Users
 
@@ -178,5 +205,94 @@ if(isset($_GET['page']) and $_GET['page']=='createSubcategory' and $_SESSION['us
     echo '</div>';
 
 }
+
+##########################################################################
+##########################################################################
+##########################################################################
+/*
+
+   6 SORTCATEGORY Page
+
+   Page to sort all Categories
+
+*/
+##########################################################################
+##########################################################################
+##########################################################################
+
+if(isset($_GET['page']) and $_GET['page']=='sortCategories' and $_SESSION['username'] and $_SESSION['useradmin'] ) {
+
+    $allCategories = getAllCategories();
+
+    echo '<div class="basicPage">';
+    echo "<p class='paragraphTitle'><b>".$lang['titles']['sortCategories']."</b></p><br />";
+    echo '<form action="#" method="post">';
+    echo "  <table class='baseTable'>";
+    $index = 0;
+    foreach($allCategories as $category) {
+        $sortArray = array(
+            "rowIndex" => $index,
+            "categoryId" => $category['id']
+        );
+        echo '  <tr id="'.$index.'">';
+        echo '      <td>'.$category['name'].'</td>';
+        echo '      <input type="hidden" name="rowIndex'.$index.'" value="'.$category['id'].'"  />';
+        echo '      <td class="centered"><p class="center"><span class="button" id="small" onclick="pushUp('.$index.')"/><i class="fa fa-chevron-up" aria-hidden="true"></i></span></p></td>';
+        echo '      <td class="centered"><p class="center"><span class="button" id="small" onclick="pushDown('.$index.')"/><i class="fa fa-chevron-down" aria-hidden="true"></i></span></p></td>';
+        echo '  </tr>';
+        $index++;
+    }
+    echo '      <input type="hidden" name="sortCategories" />';
+    echo '  </table>';
+    echo '  <br />';
+    echo '  <button class="button" id="small">'.$lang['buttons']['confirm'].'</button></form><br /> ';
+    echo '  <hr class="alternate" /><p><a href="index.php?page=configureCategories" class="button" id="small">'.$lang['buttons']['back'].'</a> </p>';
+    echo '</div>';
+}
+
+##########################################################################
+##########################################################################
+##########################################################################
+/*
+
+   7 SORTSUBCATEGORY Page
+
+   Page to sort all Categories
+
+*/
+##########################################################################
+##########################################################################
+##########################################################################
+
+if(isset($_GET['page']) and $_GET['page']=='sortSubcategories' and $_SESSION['username'] and $_SESSION['useradmin'] ) {
+
+    $allSubcategories = getSubcategories($_GET['cat']);
+
+    echo '<div class="basicPage">';
+    echo "<p class='paragraphTitle'><b>".$lang['titles']['sortSubcategories']."</b></p><br />";
+    echo '<form action="#" method="post">';
+    echo "  <table class='baseTable'>";
+    $index = 0;
+    foreach($allSubcategories as $subcategory) {
+        $sortArray = array(
+            "rowIndex" => $index,
+            "categoryId" => $subcategory['id']
+        );
+        echo '  <tr id="'.$index.'">';
+        echo '      <td>'.$subcategory['name'].'</td>';
+        echo '      <input type="hidden" name="rowIndex'.$index.'" value="'.$subcategory['id'].'"  />';
+        echo '      <td class="centered"><p class="center"><span class="button" id="small" onclick="pushUp('.$index.')"/><i class="fa fa-chevron-up" aria-hidden="true"></i></span></p></td>';
+        echo '      <td class="centered"><p class="center"><span class="button" id="small" onclick="pushDown('.$index.')"/><i class="fa fa-chevron-down" aria-hidden="true"></i></span></p></td>';
+        echo '  </tr>';
+        $index++;
+    }
+    echo '      <input type="hidden" name="sortSubcategories" />';
+    echo '  </table>';
+    echo '  <br />';
+    echo '  <button class="button" id="small">'.$lang['buttons']['confirm'].'</button></form><br />';
+    echo '  <hr class="alternate" /><p><a href="index.php?page=manageCategory&cat='.$_GET['cat'].'" class="button" id="small">'.$lang['buttons']['back'].'</a> </p>';
+    echo '</div>';
+}
+
 
 ?>

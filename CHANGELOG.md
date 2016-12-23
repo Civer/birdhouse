@@ -2,10 +2,21 @@
 
 ##History
 
+- v0.2.1b (23.12.2016)
 - v0.2b (23.12.2016)
 - v0.1b (21.12.2016)
 
-##v02.b
+##v0.2.1b
+
+Sorting for Categories and Subcategories
+
+###Features
+
+- Added sorting feature for both Categories and Subcategories
+- Reworked some navigations in Category and Subcategory menu
+- Minor text changes
+
+##v0.2b
 
 Introducing a lot of new features like subcategories
 
@@ -28,7 +39,7 @@ Introducing a lot of new features like subcategories
 - Bug Fixes
 - Minor text changes
 
-##v01.b
+##v0.1b
 
 Commit of Initial Beta Version.
 
