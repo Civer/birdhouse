@@ -37,7 +37,8 @@ $lang = array(
         "createUser" => "Benutzer anlegen",
         "pageSettings" => "Seiteneinstellungen",
         "generalPageSettings" => "Allgemeine Einstellungen",
-        "language" => "Sprache"
+        "language" => "Sprache",
+        "suggestions" => "Empfehlungen"
     ),
     "texts" => array(
         "noOpenOrders" => "Keine offenen Bestellungen",
@@ -131,7 +132,9 @@ $lang = array(
         "initialpassword" => "Initialpasswort",
         "language" => "Sprache",
         "sitename" => "Seitentitel",
-        "siteslogan" => "Seitenslogan"
+        "siteslogan" => "Seitenslogan",
+        "adminDescription" => "Adminbeschreibung",
+        "showOnSuggestionPage" => "Empfehlung"
     ),
     "tableHeaders" => array(
         "time" => "Zeit",

@@ -43,7 +43,10 @@ if(isset($_GET['page']) and $_GET['page']=='createItem' and $_SESSION['username'
     }
     echo "</select></p>";
         echo '    <input type="text" name="name" class="inputField" placeholder="'.$lang['fields']['name'].'" id="category"/><br />';
-        echo '    <textarea name="description" class="inputFieldWide" placeholder="'.$lang['fields']['description'].'" rows="6"></textarea><br />';
+        echo '    <textarea name="description" class="inputFieldWide" placeholder="'.$lang['fields']['description'].'" rows="6"></textarea><br /><br />';
+        echo '    <span class="ingredientCheckbox">';
+            echo '    <input type="checkbox" name="showOnSuggestionPage" />';
+        echo ' '.$lang['fields']['showOnSuggestionPage'].'</span><br /><br />';
 
         //Ingredient Loop
         for ($i = 1; $i <= 8; $i++ ) {
@@ -57,7 +60,9 @@ if(isset($_GET['page']) and $_GET['page']=='createItem' and $_SESSION['username'
             echo '</span><br />';
         }
 
-    //Status and Submit
+        echo '    <textarea name="adminDescription" class="inputFieldWide" placeholder="'.$lang['fields']['adminDescription'].'" rows="6"></textarea><br />';
+
+        //Status and Submit
         echo '    <p><select name="status" class="inputField"><option value="active">'.$lang['states']['active'].'</option><option value="inactive">'.$lang['states']['inactive'].'</option></select></p>';
         echo '    <input type="hidden" name="category" value="'.$_GET['cat'].'"/>';
         echo '    <input type="hidden" name="createItem" />';
@@ -112,6 +117,14 @@ if(isset($_GET['page']) and $_GET['page']=='editItem' and $_SESSION['username'] 
 
         echo '    <p><input type="text" name="name" class="inputField" placeholder="'.$lang['fields']['name'].'" value ="'.$item['name'].'" id="category"/><br />';
         echo '    <textarea name="description" class="inputFieldWide" placeholder="'.$lang['fields']['description'].'" rows="6">'.$item['description'].'</textarea></p>';
+        echo '    <span class="ingredientCheckbox">';
+        if($item['showOnSuggestionPage']) {
+            echo '    <input type="checkbox" name="showOnSuggestionPage" checked />';
+        }
+        else {
+            echo '    <input type="checkbox" name="showOnSuggestionPage" />';
+        }
+        echo ' '.$lang['fields']['showOnSuggestionPage'].'</span><br /><br />';
 
         //Ingredient Loop
         for ($i = 1; $i <= 8; $i++ ) {
@@ -122,13 +135,15 @@ if(isset($_GET['page']) and $_GET['page']=='editItem' and $_SESSION['username'] 
             echo '    <input type="text" name="'.$ingr_admin.'" class="inputField" placeholder="'.$lang['fields']['ingredientAdmin'].'" value ="'.$item[$ingr_admin].'" id="category" />';
             echo '    <span class="ingredientCheckbox">';
                 if($item[$ingr_show]) {
-                    echo '    <input type="checkbox" name="'.$ingr_show.'" checked/>';
+                    echo '    <input type="checkbox" name="'.$ingr_show.'" checked />';
                 }
                 else {
                     echo '    <input type="checkbox" name="'.$ingr_show.'" />';
                 }
             echo '</span><br />';
         }
+
+        echo '    <textarea name="adminDescription" class="inputFieldWide" placeholder="'.$lang['fields']['adminDescription'].'" rows="6">'.$item['adminDescription'].'</textarea><br />';
 
         //Status Flag
         if($status) {

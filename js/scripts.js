@@ -1,11 +1,76 @@
+activeSubcategory = null;
+activeSubcategoryi = null;
+
 function toggleSubcategory(id) {
     var subCat = "#subCat"+id;
-    $(subCat).slideToggle("slow");
+    var subCati = "#subCati"+id;
+    if(activeSubcategory != subCat) {
+        if(activeSubcategory) {
+            toggleCloseOldSubCat(activeSubcategory, activeSubcategoryi);
+        }
+        activeSubcategory = subCat;
+        activeSubcategoryi = subCati;
+        $(subCat).slideToggle("slow");
+        if($(subCati).attr("class") == "fa fa-angle-right") {
+            $(subCati).removeClass("fa fa-angle-right");
+            $(subCati).addClass("fa fa-angle-down");
+        }
+        else {
+            $(subCati).removeClass("fa fa-angle-down");
+            $(subCati).addClass("fa fa-angle-right");
+        }
+    }
 }
 
+function toggleCloseOldSubCat(subCat, subCati) {
+    $(subCat).slideToggle("slow");
+    if($(subCati).attr("class") == "fa fa-angle-right") {
+        $(subCati).removeClass("fa fa-angle-right");
+        $(subCati).addClass("fa fa-angle-down");
+    }
+    else {
+        $(subCati).removeClass("fa fa-angle-down");
+        $(subCati).addClass("fa fa-angle-right");
+    }
+}
+
+activeCategory = null;
+activeCategoryi = null;
+
 function toggleCategory(id) {
-    var cat = "#cat"+id;
+    var cat = "#Cat"+id;
+    var cati = "#Cati"+id;
+    if(activeCategory != cat) {
+        if(activeCategory) {
+            toggleCloseOldCat(activeCategory, activeCategoryi);
+        }
+        console.log(activeCategory, activeCategoryi);
+        activeCategory = cat;
+        activeCategoryi = cati;
+        console.log(activeCategory, activeCategoryi);
+        console.log()
+        $(cat).slideToggle("slow");
+        if($(cati).attr("class") == "fa fa-angle-right") {
+            $(cati).removeClass("fa fa-angle-right");
+            $(cati).addClass("fa fa-angle-down");
+        }
+        else {
+            $(cati).removeClass("fa fa-angle-down");
+            $(cati).addClass("fa fa-angle-right");
+        }
+    }
+}
+
+function toggleCloseOldCat(cat, cati) {
     $(cat).slideToggle("slow");
+    if($(cati).attr("class") == "fa fa-angle-right") {
+        $(cati).removeClass("fa fa-angle-right");
+        $(cati).addClass("fa fa-angle-down");
+    }
+    else {
+        $(cati).removeClass("fa fa-angle-down");
+        $(cati).addClass("fa fa-angle-right");
+    }
 }
 
 function toggleInactive() {
@@ -99,43 +164,44 @@ function createCocktailHTML(array) {
         string = "Keine Anmerkungen<br /><br />"
     }
 
-    string+= "<table class='baseTable'>";
-    string+= "<tr class='header'><td>Zutat</td><td>Anmerkung</td></tr>";
+    string += "<table class='baseTable'>";
+    string += "<tr class='header'><td>Zutat</td><td>Anmerkung</td></tr>";
 
     if(array.ingr1) {
-        string = string + "<tr class='center'><td>" + array.ingr1 + "</td>";
-        string = string + "<td>" + array.ingr1_admin + "</td></tr>";
+        string += "<tr class='center'><td>" + array.ingr1 + "</td>";
+        string += "<td>" + array.ingr1_admin + "</td></tr>";
     }
     if(array.ingr2) {
-        string = string + "<tr class='center'><td>" + array.ingr2 + "</td>";
-        string = string + "<td>" + array.ingr2_admin + "</td></tr>";
+        string += "<tr class='center'><td>" + array.ingr2 + "</td>";
+        string += "<td>" + array.ingr2_admin + "</td></tr>";
     }
     if(array.ingr3) {
-        string = string + "<tr class='center'><td>" + array.ingr3 + "</td>";
-        string = string + "<td>" + array.ingr3_admin + "</td></tr>";
+        string += "<tr class='center'><td>" + array.ingr3 + "</td>";
+        string += "<td>" + array.ingr3_admin + "</td></tr>";
     }
     if(array.ingr4) {
-        string = string + "<tr class='center'><td>" + array.ingr4 + "</td>";
-        string = string + "<td>" + array.ingr4_admin + "</td></tr>";
+        string += "<tr class='center'><td>" + array.ingr4 + "</td>";
+        string += "<td>" + array.ingr4_admin + "</td></tr>";
     }
     if(array.ingr5) {
-        string = string + "<tr class='center'><td>" + array.ingr5 + "</td>";
-        string = string + "<td>" + array.ingr5_admin + "</td></tr>";
+        string += "<tr class='center'><td>" + array.ingr5 + "</td>";
+        string += "<td>" + array.ingr5_admin + "</td></tr>";
     }
     if(array.ingr6) {
-        string = string + "<tr class='center'><td>" + array.ingr6 + "</td>";
-        string = string + "<td>" + array.ingr6_admin + "</td></tr>";
+        string += "<tr class='center'><td>" + array.ingr6 + "</td>";
+        string += "<td>" + array.ingr6_admin + "</td></tr>";
     }
     if(array.ingr7) {
-        string = string + "<tr class='center'><td>" + array.ingr7 + "</td>";
-        string = string + "<td>" + array.ingr7_admin + "</td></tr>";
+        string += "<tr class='center'><td>" + array.ingr7 + "</td>";
+        string += "<td>" + array.ingr7_admin + "</td></tr>";
     }
     if(array.ingr8) {
-        string = string + "<tr class='center'><td>" + array.ingr8 + "</td>";
-        string = string + "<td>" + array.ingr8_admin + "</td></tr>";
+        string += "<tr class='center'><td>" + array.ingr8 + "</td>";
+        string += "<td>" + array.ingr8_admin + "</td></tr>";
     }
 
-    string+= "</table>";
+    string += "</table><br />";
+    string += array.adminDescription;
 
     return string;
 }

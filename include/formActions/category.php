@@ -48,6 +48,7 @@ or item management
             "subcategory" => $_POST['subcategory'],
             "name" => utf8_decode($_POST['name']),
             "description" => utf8_decode($_POST['description']),
+            "adminDescription" => utf8_decode($_POST['adminDescription']),
             "ingr1" => utf8_decode($_POST['ingr1']),
             "ingr2" => utf8_decode($_POST['ingr2']),
             "ingr3" => utf8_decode($_POST['ingr3']),
@@ -72,7 +73,8 @@ or item management
             "ingr6_show" => $ingr_array[6],
             "ingr7_show" => $ingr_array[7],
             "ingr8_show" => $ingr_array[8],
-            "status" => $_POST['status']
+            "status" => $_POST['status'],
+            "showOnSuggestionPage" => $_POST['showOnSuggestionPage']
         );
 
         createItem($itemArray);
@@ -94,6 +96,7 @@ or item management
             "subcategory" => $_POST['subcategory'],
             "name" => utf8_decode($_POST['name']),
             "description" => utf8_decode($_POST['description']),
+            "adminDescription" => utf8_decode($_POST['adminDescription']),
             "ingr1" => utf8_decode($_POST['ingr1']),
             "ingr2" => utf8_decode($_POST['ingr2']),
             "ingr3" => utf8_decode($_POST['ingr3']),
@@ -118,7 +121,8 @@ or item management
             "ingr6_show" => $ingr_array[6],
             "ingr7_show" => $ingr_array[7],
             "ingr8_show" => $ingr_array[8],
-            "status" => $_POST['status']
+            "status" => $_POST['status'],
+            "showOnSuggestionPage" => $_POST['showOnSuggestionPage']
         );
 
         editItem($itemArray);

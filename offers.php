@@ -24,6 +24,8 @@ $allActiveCategories = array_filter($allCategories, function ($var) {
     }
 });
 
+echo '<a href="index.php" class="button" id="butAllOrders">&nbsp;<i class="fa fa-star" aria-hidden="true"></i>&nbsp;</a>';
+
 foreach ($allActiveCategories as $category) {
     echo '<span class="offers"><a href="index.php?page=category&cat='.$category['name'].'" class="button" id="butCocktails">'.$category['name'].'</a></span>';
 }

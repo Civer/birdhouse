@@ -64,38 +64,38 @@ Some of them are triggered from index and content as well.
 
     function getItems($category) { //Category is an optional parameter
 
-        $sql = "SELECT id, categoryId, subcategoryId, name, description, orders, ranking,
+        $sql = "SELECT id, categoryId, subcategoryId, name, description, adminDescription, orders, ranking,
         ingr1, ingr2, ingr3, ingr4,
         ingr5, ingr6, ingr7, ingr8,
         ingr1_admin, ingr2_admin, ingr3_admin,
         ingr4_admin, ingr5_admin, ingr6_admin, ingr7_admin, ingr8_admin,
         ingr1_show, ingr2_show, ingr3_show, ingr4_show,
         ingr5_show, ingr6_show, ingr7_show, ingr8_show,
-        active FROM items ORDER BY categoryId, subcategoryId, active ASC";
+        active, showOnSuggestionPage FROM items ORDER BY categoryId, subcategoryId, active ASC";
 
         if($category) {
             $catByName = getCategoryByName($category);
             $catById = getCategoryById($category);
 
             if($catByName) {
-                $sql = "SELECT id, categoryId, subcategoryId, name, description, orders, ranking,
+                $sql = "SELECT id, categoryId, subcategoryId, name, description, adminDescription, orders, ranking,
                 ingr1, ingr2, ingr3, ingr4,
                 ingr5, ingr6, ingr7, ingr8,
                 ingr1_admin, ingr2_admin, ingr3_admin,
                 ingr4_admin, ingr5_admin, ingr6_admin, ingr7_admin, ingr8_admin,
                 ingr1_show, ingr2_show, ingr3_show, ingr4_show,
                 ingr5_show, ingr6_show, ingr7_show, ingr8_show,
-                active FROM items WHERE categoryId = ".$catByName[0]['id']." ORDER BY categoryId, subcategoryId, active  ASC";
+                active, showOnSuggestionPage FROM items WHERE categoryId = ".$catByName[0]['id']." ORDER BY categoryId, subcategoryId, active  ASC";
             }
             if($catById) {
-                $sql = "SELECT id, categoryId, subcategoryId, name, description, orders, ranking,
+                $sql = "SELECT id, categoryId, subcategoryId, name, description, adminDescription, orders, ranking,
                 ingr1, ingr2, ingr3, ingr4,
                 ingr5, ingr6, ingr7, ingr8,
                 ingr1_admin, ingr2_admin, ingr3_admin,
                 ingr4_admin, ingr5_admin, ingr6_admin, ingr7_admin, ingr8_admin,
                 ingr1_show, ingr2_show, ingr3_show, ingr4_show,
                 ingr5_show, ingr6_show, ingr7_show, ingr8_show,
-                active FROM items WHERE categoryId = ".$catById[0]['id']." ORDER BY categoryId, subcategoryId, active  ASC";
+                active, showOnSuggestionPage FROM items WHERE categoryId = ".$catById[0]['id']." ORDER BY categoryId, subcategoryId, active  ASC";
             }
         }
 
@@ -113,6 +113,7 @@ Some of them are triggered from index and content as well.
                     "subcategoryId" => $row["subcategoryId"],
                     "name" => utf8_encode($row["name"]),
                     "description" => utf8_encode($row["description"]),
+                    "adminDescription" => utf8_encode($row["adminDescription"]),
                     "orders" => $row["orders"],
                     "ranking" => $row["ranking"],
                     "ingr1" => utf8_encode($row["ingr1"]),
@@ -139,7 +140,8 @@ Some of them are triggered from index and content as well.
                     "ingr6_show" => $row["ingr6_show"],
                     "ingr7_show" => $row["ingr7_show"],
                     "ingr8_show" => $row["ingr8_show"],
-                    "active" => $row["active"]
+                    "active" => $row["active"],
+                    "showOnSuggestionPage" => $row["showOnSuggestionPage"]
                 )
             );
         }
@@ -169,14 +171,14 @@ Some of them are triggered from index and content as well.
     function getItem($id) {
 
         $conn = getConnection();
-        $sql = "SELECT id, categoryId, subcategoryId, name, description, orders, ranking,
+        $sql = "SELECT id, categoryId, subcategoryId, name, description, adminDescription, orders, ranking,
                     ingr1, ingr2, ingr3, ingr4,
                     ingr5, ingr6, ingr7, ingr8,
                     ingr1_admin, ingr2_admin, ingr3_admin,
                     ingr4_admin, ingr5_admin, ingr6_admin, ingr7_admin, ingr8_admin,
                     ingr1_show, ingr2_show, ingr3_show, ingr4_show,
                     ingr5_show, ingr6_show, ingr7_show, ingr8_show,
-                    active FROM items WHERE id = ".$id;
+                    active, showOnSuggestionPage FROM items WHERE id = ".$id;
 
 
         $index = 0;
@@ -191,6 +193,7 @@ Some of them are triggered from index and content as well.
                     "subcategoryId" => $row["subcategoryId"],
                     "name" => utf8_encode($row["name"]),
                     "description" => utf8_encode($row["description"]),
+                    "adminDescription" => utf8_encode($row["adminDescription"]),
                     "orders" => $row["orders"],
                     "ranking" => $row["ranking"],
                     "ingr1" => utf8_encode($row["ingr1"]),
@@ -217,7 +220,8 @@ Some of them are triggered from index and content as well.
                     "ingr6_show" => $row["ingr6_show"],
                     "ingr7_show" => $row["ingr7_show"],
                     "ingr8_show" => $row["ingr8_show"],
-                    "active" => $row["active"]
+                    "active" => $row["active"],
+                    "showOnSuggestionPage" => $row["showOnSuggestionPage"]
                 )
             );
         }
@@ -487,7 +491,7 @@ function deactivateItem($id) {
 
         $conn->exec($sql);
 
-        echo '<META HTTP-EQUIV="Refresh" Content="0; URL=index.php?page=configureCategories">';
+        //echo '<META HTTP-EQUIV="Refresh" Content="0; URL=index.php?page=configureCategories">';
         echo "<p class='success'>".$lang['texts']['categoryCreated1'].$category.$lang['texts']['categoryCreated2']."</p>";
 
     }
@@ -585,7 +589,12 @@ function deleteCategory($categoryId) {
     function getSubcategories($categoryId) {
 
         $conn = getConnection();
-        $sql = "SELECT id, name, categoryId, active FROM subCategories WHERE categoryId = '".$categoryId."' ORDER BY menuOrder ASC";
+        if($categoryId) {
+            $sql = "SELECT id, name, categoryId, active FROM subCategories WHERE categoryId = '".$categoryId."' ORDER BY menuOrder ASC";
+        }
+        else {
+            $sql = "SELECT id, name, categoryId, active FROM subCategories ORDER BY menuOrder ASC";
+        }
         $index = 0;
         $results = array();
 
@@ -730,7 +739,7 @@ function deleteCategory($categoryId) {
 
         $conn->exec($sql);
 
-        echo '<META HTTP-EQUIV="Refresh" Content="0; URL=index.php?page=configureCategories">';
+        //echo '<META HTTP-EQUIV="Refresh" Content="0; URL=index.php?page=configureCategories">';
         echo "<p class='success'>".$lang['texts']['subcategoryCreated1'].$subcategory.$lang['texts']['subcategoryCreated2']."</p>";
 
     }
@@ -832,6 +841,13 @@ function createItem($itemArray) {
         $status = 0;
     }
 
+    if($itemArray['showOnSuggestionPage'] == 'on') {
+        $showOnSuggestionPage = 1;
+    }
+    else {
+        $showOnSuggestionPage = 0;
+    }
+
     $conn = getConnection();
 
     $sql = "INSERT INTO items
@@ -839,6 +855,7 @@ function createItem($itemArray) {
                     name,
                     subcategoryId,
                     description,
+                    adminDescription,
                     ingr1, ingr2,
                     ingr3, ingr4,
                     ingr5, ingr6,
@@ -851,9 +868,9 @@ function createItem($itemArray) {
                     ingr3_show, ingr4_show,
                     ingr5_show, ingr6_show,
                     ingr7_show, ingr8_show,
-                    active)
+                    active, showOnSuggestionPage)
                 VALUES
-                    ('".$itemArray['category']."', '".$itemArray['name']."', '".$itemArray['subcategory']."', '".$itemArray['description']."',
+                    ('".$itemArray['category']."', '".$itemArray['name']."', '".$itemArray['subcategory']."', '".$itemArray['description']."', '".$itemArray['adminDescription']."',
                     '".$itemArray['ingr1']."', '".$itemArray['ingr2']."',
                     '".$itemArray['ingr3']."', '".$itemArray['ingr4']."',
                     '".$itemArray['ingr5']."', '".$itemArray['ingr6']."',
@@ -866,7 +883,7 @@ function createItem($itemArray) {
                     '".$itemArray['ingr3_show']."', '".$itemArray['ingr4_show']."',
                     '".$itemArray['ingr5_show']."', '".$itemArray['ingr6_show']."',
                     '".$itemArray['ingr7_show']."', '".$itemArray['ingr8_show']."',
-                    ".$status.")";
+                    ".$status.", '".$showOnSuggestionPage."')";
 
                     //throw new Exception($sql);
 
@@ -897,11 +914,19 @@ function editItem($itemArray) {
         $status = 0;
     }
 
+    if($itemArray['showOnSuggestionPage'] == 'on') {
+        $showOnSuggestionPage = 1;
+    }
+    else {
+        $showOnSuggestionPage = 0;
+    }
+
     $conn = getConnection();
 
     $sql = "UPDATE items SET
                 name = '".$itemArray['name']."',
                 description = '".$itemArray['description']."',
+                adminDescription = '".$itemArray['adminDescription']."',
                 subcategoryId = '".$itemArray['subcategory']."',
                 ingr1 = '".$itemArray['ingr1']."', ingr2 = '".$itemArray['ingr2']."',
                 ingr3 = '".$itemArray['ingr3']."', ingr4 = '".$itemArray['ingr4']."',
@@ -915,7 +940,7 @@ function editItem($itemArray) {
                 ingr3_show = '".$itemArray['ingr3_show']."', ingr4_show = '".$itemArray['ingr4_show']."',
                 ingr5_show = '".$itemArray['ingr5_show']."', ingr6_show = '".$itemArray['ingr6_show']."',
                 ingr7_show = '".$itemArray['ingr7_show']."', ingr8_show = '".$itemArray['ingr8_show']."',
-                active = ".$status." WHERE id = ".$itemArray['item'];
+                active = ".$status.", showOnSuggestionPage = ".$showOnSuggestionPage." WHERE id = ".$itemArray['item'];
 
     $conn->exec($sql);
 

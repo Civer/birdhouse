@@ -193,6 +193,19 @@ function CatFilter($itemArray, $cat) {
     return $results;
 }
 
+function CatFilterSuggested($itemArray, $cat) {
+    $results = array();
+
+    foreach ($itemArray as $item) {
+        if($item['categoryId'] == $cat['id'] and $item['showOnSuggestionPage'] == 1) {
+            $results[] = $item;
+        }
+    }
+
+    return $results;
+}
+
+
 function subCatFilter($itemArray, $subCat) {
     $results = array();
 

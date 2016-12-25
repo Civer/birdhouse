@@ -2,9 +2,21 @@
 
 ##History
 
+- v0.3b (26.12.2016)
 - v0.2.1b (23.12.2016)
 - v0.2b (23.12.2016)
 - v0.1b (21.12.2016)
+
+##v0.3b
+
+Suggestions and enhanced Item Handling
+
+###Features
+
+- Introduced Suggestionpage
+- Items can be added to Suggestionpage
+- A lot of UI improvements
+- Admin Description for storing special informations
 
 ##v0.2.1b
 

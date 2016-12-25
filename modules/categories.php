@@ -151,7 +151,7 @@ if(isset($_GET['page']) and $_GET['page']=='manageSubcategory' and $_SESSION['us
 
     //Items
     echo "<p class='paragraphTitle'><b>".$lang['titles']['editSubcategory']."</b></p>";
-    echo '<form method="post" action="#">';
+    echo '<form method="post" action="index.php?page=manageCategory&cat='.$subCategory[0]['categoryId'].'">';
     echo '<p><input type="hidden" name="changeSubcategoryName" value="'.$subCategory[0]['id'].'" /><input type="text" class="inputField" name="subcategoryName" placeholder="'.$lang['fields']['subcategory'].'" value="'.$subCategory[0]['name'].'" /> <br /><button class="button" id="small"/>'.$lang['buttons']['edit'].'</button></p>';
     echo '</form><hr class="alternate" /><p><a href="index.php?page=manageCategory&cat='.$subCategory[0]['categoryId'].'" class="button" id="small">'.$lang['buttons']['back'].'</a> </p>';
     echo '</div>';
@@ -174,7 +174,7 @@ if(isset($_GET['page']) and $_GET['page']=='createCategory' and $_SESSION['usern
     echo '<form action="#" method="post">';
     echo '    <p><input type="text" name="category" class="inputField" placeholder="'.$lang['fields']['category'].'" id="category"/></p>';
     echo '    <p><input type="hidden" name="createCategory" /></p>';
-    echo '    <p><input type="submit" value="'.$lang['buttons']['create'].'" class="button" /></p>';
+    echo '    <p><input type="submit" value="'.$lang['buttons']['create'].'" class="button" /></p><hr class="alternate" /><p> <a href="index.php?page=configureCategories" class="button" id="small">'.$lang['buttons']['back'].'</a> </p>';
     echo '</form>';
     echo '</div>';
 
@@ -200,7 +200,7 @@ if(isset($_GET['page']) and $_GET['page']=='createSubcategory' and $_SESSION['us
     echo '    <p><input type="text" name="subcategory" class="inputField" placeholder="'.$lang['fields']['subcategory'].'" id="subcategory"/></p>';
     echo '    <p><input type="hidden" name="category" value="'.$category.'" /></p>';
     echo '    <p><input type="hidden" name="createSubcategory" /></p>';
-    echo '    <p><input type="submit" value="'.$lang['buttons']['create'].'" class="button" /></p>';
+    echo '    <p><input type="submit" value="'.$lang['buttons']['create'].'" class="button" /></p><hr class="alternate" /><p><a href="index.php?page=manageCategory&cat='.$category.'" class="button" id="small">'.$lang['buttons']['back'].'</a> </p>';
     echo '</form>';
     echo '</div>';
 

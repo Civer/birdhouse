@@ -72,7 +72,7 @@ As you can see it is created as a php file to get the colors from database
 
 div.container {
     margin: 0 auto;
-    width: 800px;
+    width: 800;
 }
 
 /*************************************************/
@@ -112,11 +112,11 @@ li {
 }
 
 form {
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 table {
-    padding: 0 10px;
+    padding: 0 10;
     margin: auto;
 }
 
@@ -148,10 +148,10 @@ td {
 header, nav, section, footer, div.offers, div.search {
     background-color: <?=$outerBox?>;
     padding: 15px 0;
-    margin: 10px 0;
+    margin: 10 0;
     text-align: center;
     border-radius: 5px;
-    min-width: 750px;
+    min-width: 750;
 }
 
 footer {
@@ -173,8 +173,12 @@ div.basicPage {
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
-    margin: 10px 20px;
+    margin: 10 20;
     background-color: <?=$basicPage?>;
+}
+
+div.subCategory, div.category {
+    display: none;
 }
 
 div.subCategoryTitle {
@@ -218,8 +222,8 @@ div.subCategoryTitleFixed {
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
-    margin: 0px 14px;
-    margin-bottom: 10px;
+    margin: 0 14px;
+    margin-bottom: 10;
     background-color: <?=$background?>;
 }
 
@@ -234,8 +238,8 @@ div.subCategoryTitleFixedNoSubCategories {
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
-    margin: 0px 14px;
-    margin-bottom: 10px;
+    margin: 0 14px;
+    margin-bottom: 10;
     background-color: <?=$background?>;
 }
 
@@ -247,7 +251,7 @@ div.inactiveItems {
 div.Category div.subCategory {
     display: block;
     border: 1px solid transparent;
-    margin: 10px 14px;
+    margin: 10 14px;
 }
 
 /*************************************************/
@@ -277,11 +281,11 @@ p.itemIngredients {
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
-    width: 150px;
+    width: 150;
     margin: 5px auto;
     background-color: <?=$ingredients?>;
     font-weight: bold;
-    padding: 0px;
+    padding: 0;
 }
 
 div.ingredientsList {
@@ -297,11 +301,12 @@ span.ingredientCheckbox {
     box-shadow: 1px 1px 4px <?=$inputFieldShadow?>;
     -moz-box-shadow: 1px 1px 4px <?=$inputFieldShadow?>;
     -webkit-box-shadow: 1px 1px 4px <?=$inputFieldShadow?>;
-    background: <?=$outerBox?>;
+    background: white;
     padding: 6px;
-    margin: 10px;
+    margin: 10;
     outline: none;
-    width: 150px;
+    width: 150;
+    font-size: 0.75em;
     text-align: center;
 }
 
@@ -358,12 +363,12 @@ p.center {
 
 p.paragraphTitle {
     font-size: 1.25em;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 p.paragraphDescription {
     text-align: justify;
-    margin: 20px;
+    margin: 20;
 }
 
 p.bold {
@@ -375,7 +380,7 @@ p.underlined {
 }
 
 p.buttonMargin, p.noMargin {
-    margin: 0px;
+    margin: 0;
 }
 
 
@@ -388,9 +393,9 @@ p.buttonMargin, p.noMargin {
 /*************************************************/
 
 .button {
-	-moz-box-shadow:inset 0px 1px 0px 0px <?=$buttonShadow?>;
-	-webkit-box-shadow:inset 0px 1px 0px 0px <?=$buttonShadow?>;
-	box-shadow:inset 0px 1px 0px 0px <?=$buttonShadow?>;
+	-moz-box-shadow:inset 0 1px 0 0 <?=$buttonShadow?>;
+	-webkit-box-shadow:inset 0 1px 0 0 <?=$buttonShadow?>;
+	box-shadow:inset 0 1px 0 0 <?=$buttonShadow?>;
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, <?=$buttonColor1?>), color-stop(1, <?=$buttonColor2?>));
 	background:-moz-linear-gradient(top, <?=$buttonColor1?> 5%, <?=$buttonColor2?> 100%);
 	background:-webkit-linear-gradient(top, <?=$buttonColor1?> 5%, <?=$buttonColor2?> 100%);
@@ -411,7 +416,7 @@ p.buttonMargin, p.noMargin {
 	font-weight:bold;
 	padding:6px 24px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px <?=$textShadow?>;
+	text-shadow:0 1px 0 <?=$textShadow?>;
 }
 .button:hover {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, <?=$buttonColor2?>), color-stop(1, <?=$buttonColor1?>));
@@ -444,9 +449,9 @@ p.buttonMargin, p.noMargin {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     padding: 7px;
-    margin: 10px;
+    margin: 10;
     outline: none;
-    width: 150px;
+    width: 150;
     text-align: center;
 }
 
@@ -462,9 +467,9 @@ p.buttonMargin, p.noMargin {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     padding: 7px;
-    margin: 10px;
+    margin: 10;
     outline: none;
-    width: 380px;
+    width: 380;
     text-align: center;
 }
 
@@ -483,7 +488,7 @@ td.menu {
 }
 
 td.cName {
-    width: 200px;
+    width: 200;
     font-weight: bold;
 }
 
@@ -500,6 +505,18 @@ tr.center {
     text-align: center;
 }
 
+h3.subtitle {
+    margin: 20px;
+}
+
+span.subtitleleft {
+    float: left;
+}
+
+span.subtitleright {
+    float: right;
+}
+
 /*************************************************/
 /*
 
@@ -508,7 +525,7 @@ tr.center {
 */
 /*************************************************/
 
-@media (max-device-width: 800px) {
+@media (max-device-width: 800) {
 
     /*************************************************/
     /*
@@ -520,7 +537,7 @@ tr.center {
 
     body {
         font-size: 2em;
-        margin-top: 0px;
+        margin-top: 0;
     }
 
     /*************************************************/
@@ -533,17 +550,17 @@ tr.center {
 
     header, nav, section, footer, div.offers, div.search  {
         border-radius: 0;
-        margin-top: 0px;
+        margin-top: 0;
     }
 
     div.offers {
-        margin-top: 10px;
+        margin-top: 10;
     }
 
     header {
-        margin-top: 0px;
-        margin-bottom: 0px;
-        height: 90px;
+        margin-top: 0;
+        margin-bottom: 0;
+        height: 90;
     }
 
     nav {
@@ -558,7 +575,7 @@ tr.center {
     }
 
     div.mobileNavigation {
-        padding: 10px 0;
+        padding: 10 0;
     }
 
     div.mobileMenu {
@@ -574,7 +591,7 @@ tr.center {
     }
 
     img.logo {
-        margin: 20px;
+        margin: 20;
     }
 
     div.container {
@@ -583,7 +600,7 @@ tr.center {
     }
 
     section {
-        padding: 30px 2px;
+        padding: 30 2px;
     }
 
     div.basicPage {
@@ -595,7 +612,7 @@ tr.center {
         letter-spacing: 2px;
         font-size: 1.25em;
         margin: 0 0;
-        margin-top: 30px;
+        margin-top: 30;
     }
 
     div.subCategoryTitleFirst {
@@ -617,7 +634,7 @@ tr.center {
         letter-spacing: 4px;
         font-size: 1.25em;
         margin: 0 0;
-        margin-bottom: 30px;
+        margin-bottom: 30;
     }
 
     div.subCategoryTitleFixedMainpage {
@@ -650,7 +667,7 @@ tr.center {
     }
 
     p.itemIngredients {
-        width: 250px;
+        width: 250;
     }
 
     /*************************************************/
@@ -662,8 +679,8 @@ tr.center {
     /*************************************************/
 
     p.paragraphTitle {
-        font-size: 40px;
-        margin-bottom: 0px;
+        font-size: 40;
+        margin-bottom: 0;
     }
 
     /*************************************************/
@@ -681,10 +698,10 @@ tr.center {
     	font-family:Arial;
     	font-size:1.5em;
     	font-weight:bold;
-    	padding:10px 24px;
+    	padding:10 24px;
     	text-decoration:none;
-    	text-shadow:0px 1px 0px <?=$textShadow?>;
-        margin: 10px;
+    	text-shadow:0 1px 0 <?=$textShadow?>;
+        margin: 10;
     }
 
     .button {
@@ -697,15 +714,15 @@ tr.center {
 
     .inputField {
         font-size: 1.2em;
-        width: 400px;
-        height: 80px;
-        margin: 20px;
+        width: 400;
+        height: 80;
+        margin: 20;
     }
 
     .inputFieldWide {
         font-size: 1.2em;
-        width: 940px;
-        margin: 20px;
+        width: 940;
+        margin: 20;
     }
 
     span.ingredientCheckbox {
@@ -718,9 +735,9 @@ tr.center {
         -webkit-box-shadow: 1px 1px 4px <?=$inputFieldShadow?>;
         background: <?=$outerBox?>;
         padding: 6px;
-        margin: 10px;
+        margin: 10;
         outline: none;
-        width: 150px;
+        width: 150;
         text-align: center;
     }
 
@@ -735,7 +752,7 @@ tr.center {
       -moz-transform: scale(1.5); /* FF */
       -webkit-transform: scale(1.5); /* Safari and Chrome */
       -o-transform: scale(1.5); /* Opera */
-      padding: 10px;
-      margin: 10px;
+      padding: 10;
+      margin: 10;
     }
 }
