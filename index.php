@@ -17,11 +17,20 @@ as well as loading the content related scripts
 ##########################################################################
 
 try {
+    if(!file_exists($_SERVER['DOCUMENT_ROOT']."/ressources/config.php")) {
+        throw new Exception("Running install file");
+    }
+}
+catch(Exception $e) {
+    echo '<META HTTP-EQUIV="Refresh" Content="0; URL=install.php">';
+}
 
 session_start();
 
 require $_SERVER['DOCUMENT_ROOT']."/include/plugins/PusherLocal.php";
 require $_SERVER['DOCUMENT_ROOT']."/ressources/config.php";
+
+
 require $_SERVER['DOCUMENT_ROOT']."/include/general.php";
 
 
@@ -34,11 +43,6 @@ require $_SERVER['DOCUMENT_ROOT']."/ressources/lang/".$pageSettings[0]['lang']."
 
 foreach (glob("./include/formActions/*.php") as $filename) {
     require $filename;
-}
-
-}
-catch(Exception $e) {
-    echo '<META HTTP-EQUIV="Refresh" Content="0; URL=install.php">';
 }
 
 ?>

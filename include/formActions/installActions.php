@@ -380,6 +380,8 @@ $conn->exec($sql);
 
 $conn = null;
 
+unlink($_SERVER['DOCUMENT_ROOT'].'install.php');
+
 echo '<META HTTP-EQUIV="Refresh" Content="0; URL=index.php">';
 
 }

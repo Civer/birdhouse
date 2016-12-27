@@ -81,8 +81,8 @@ require $_SERVER['DOCUMENT_ROOT']."/include/formActions/installActions.php";
                       <p><input type="checkbox" name="dummyData" value="on"/></p>
                   </td></tr>
                   </table>
-                  <input type="hidden" name="generalPageSettings" /><br />
-                  <p class="buttonMargin"><input type="submit" value="Create Project" class="button"/></p>
+                      <input type="hidden" name="generalPageSettings" /><br />
+                      <p class="buttonMargin"><input type="submit" value="Create Project" class="button"/></p>
               </form><br />
             </div>
         </div>
