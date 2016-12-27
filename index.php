@@ -16,11 +16,14 @@ as well as loading the content related scripts
 ##########################################################################
 ##########################################################################
 
+try {
+
 session_start();
 
 require $_SERVER['DOCUMENT_ROOT']."/include/plugins/PusherLocal.php";
 require $_SERVER['DOCUMENT_ROOT']."/ressources/config.php";
 require $_SERVER['DOCUMENT_ROOT']."/include/general.php";
+
 
 foreach (glob("./include/methods/*.php") as $filename) {
     require $filename;
@@ -31,6 +34,11 @@ require $_SERVER['DOCUMENT_ROOT']."/ressources/lang/".$pageSettings[0]['lang']."
 
 foreach (glob("./include/formActions/*.php") as $filename) {
     require $filename;
+}
+
+}
+catch(Exception $e) {
+    echo '<META HTTP-EQUIV="Refresh" Content="0; URL=install.php">';
 }
 
 ?>

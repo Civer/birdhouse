@@ -98,9 +98,9 @@ body.stop-scrolling {
     line-height: 40px;
     display: block; }
   .sweet-alert p {
-    color: #797979;
+    color: #000000;
     font-size: 16px;
-    text-align: center;
+    text-align: justify;
     font-weight: 300;
     position: relative;
     text-align: inherit;

@@ -31,22 +31,22 @@ if(isset($_GET['page']) and $_GET['page']=='createItem' and $_SESSION['username'
     $subCategories = getSubcategories($category[0]['id']);
 
     echo '<div class="basicPage">';
-    echo "<p class='paragraphTitle'>".$lang['titles']['createItem']."</p>";
-    echo "<p>".$lang['fields']['category'].": <b>".$category[0]['name']."</b><br />";
-
+    echo "<p class='paragraphTitle'>".$lang['titles']['createItem']." (".$category[0]['name'].") <a href='index.php?page=manageCategory&cat=".$_GET['cat']."' id='small'>".$lang['buttons']['back']."</a></p><br />";
     //Item Entry Form
     echo '<form action="#" method="post">';
-    echo "<select name='subcategory' class='inputField'>";
-    echo '<option value="0">'.$lang['fields']['none'].'</option>';
-    foreach($subCategories as $subcategory) {
-        echo '<option value="'.$subcategory['id'].'">'.$subcategory['name'].'</option>';
-    }
-    echo "</select></p>";
-        echo '    <input type="text" name="name" class="inputField" placeholder="'.$lang['fields']['name'].'" id="category"/><br />';
-        echo '    <textarea name="description" class="inputFieldWide" placeholder="'.$lang['fields']['description'].'" rows="6"></textarea><br /><br />';
-        echo '    <span class="ingredientCheckbox">';
-            echo '    <input type="checkbox" name="showOnSuggestionPage" />';
-        echo ' '.$lang['fields']['showOnSuggestionPage'].'</span><br /><br />';
+        echo '    <input type="text" name="name" class="inputField" placeholder="'.$lang['fields']['name'].'" id="category"/>';
+        echo '    <p><span class="suggestionCheckbox">';
+        echo '    <input type="checkbox" name="showOnSuggestionPage" />';
+        echo ' '.$lang['fields']['showOnSuggestionPage'].'</span></p>';
+        echo "<select name='subcategory' class='inputField'>";
+        echo '<option value="0">'.$lang['fields']['none'].'</option>';
+        foreach($subCategories as $subcategory) {
+            echo '<option value="'.$subcategory['id'].'">'.$subcategory['name'].'</option>';
+        }
+        echo "</select>";
+        echo '    <select name="status" class="inputField"><option value="active">'.$lang['states']['active'].'</option><option value="inactive">'.$lang['states']['inactive'].'</option></select><br />';
+        echo '    <textarea name="description" class="inputFieldWide" placeholder="'.$lang['fields']['description'].'" rows="6"></textarea><br />';
+
 
         //Ingredient Loop
         for ($i = 1; $i <= 8; $i++ ) {
@@ -63,15 +63,12 @@ if(isset($_GET['page']) and $_GET['page']=='createItem' and $_SESSION['username'
         echo '    <textarea name="adminDescription" class="inputFieldWide" placeholder="'.$lang['fields']['adminDescription'].'" rows="6"></textarea><br />';
 
         //Status and Submit
-        echo '    <p><select name="status" class="inputField"><option value="active">'.$lang['states']['active'].'</option><option value="inactive">'.$lang['states']['inactive'].'</option></select></p>';
         echo '    <input type="hidden" name="category" value="'.$_GET['cat'].'"/>';
         echo '    <input type="hidden" name="createItem" />';
         echo '    <p><input type="submit" value="'.$lang['buttons']['create'].'" class="button" /></p>';
     echo '</form>';
-
-    echo '<a href="index.php?page=manageCategory&cat='.$_GET['cat'].'" class="button" id="small">'.$lang['buttons']['back'].'</a><br /><br />';
+    echo '<hr class="alternate" /><p><a href="index.php?page=manageCategory&cat='.$item['categoryId'].'" class="button" id="small">'.$lang['buttons']['back'].'</a></p>';
     echo '</div>';
-
 }
 
 ##########################################################################
@@ -97,11 +94,20 @@ if(isset($_GET['page']) and $_GET['page']=='editItem' and $_SESSION['username'] 
     $subCategories = getSubcategories($category[0]['id']);
 
     echo '<div class="basicPage">';
-    echo "<p class='paragraphTitle'>".$lang['titles']['editItem']."</p>";
+    echo "<p class='paragraphTitle'>".$lang['titles']['editItem']." (".$category[0]['name'].")</p>";
 
     //Item Entry Form
     echo '<form action="index.php?page=manageCategory&cat='.$item['categoryId'].'" method="post">';
-    echo "<p>".$lang['fields']['category'].": <b>".$category[0]['name']."</b><br />";
+
+    echo '<p><input type="text" name="name" class="inputField" placeholder="'.$lang['fields']['name'].'" value ="'.$item['name'].'" id="category"/><br />';
+    echo '<p><span class="suggestionCheckbox">';
+    if($item['showOnSuggestionPage']) {
+        echo '    <input type="checkbox" name="showOnSuggestionPage" checked />';
+    }
+    else {
+        echo '    <input type="checkbox" name="showOnSuggestionPage" />';
+    }
+    echo ' '.$lang['fields']['showOnSuggestionPage'].'</span></p>';
 
     echo "<select name='subcategory' class='inputField'>";
     echo '<option value="0">'.$lang['fields']['none'].'</option>';
@@ -113,18 +119,16 @@ if(isset($_GET['page']) and $_GET['page']=='editItem' and $_SESSION['username'] 
             echo '<option value="'.$subcategory['id'].'">'.$subcategory['name'].'</option>';
         }
     }
-    echo "</select></p>";
+    echo "</select>";
+    if($status) {
+        echo '    <select name="status" class="inputField"><option value="active">'.$lang['states']['active'].'</option><option value="inactive">'.$lang['states']['inactive'].'</option></select></p>';
+    }
+    else {
+        echo '    <select name="status" class="inputField"><option value="active">'.$lang['states']['active'].'</option><option value="inactive" selected>'.$lang['states']['inactive'].'</option></select></p>';
+    }
 
-        echo '    <p><input type="text" name="name" class="inputField" placeholder="'.$lang['fields']['name'].'" value ="'.$item['name'].'" id="category"/><br />';
+
         echo '    <textarea name="description" class="inputFieldWide" placeholder="'.$lang['fields']['description'].'" rows="6">'.$item['description'].'</textarea></p>';
-        echo '    <span class="ingredientCheckbox">';
-        if($item['showOnSuggestionPage']) {
-            echo '    <input type="checkbox" name="showOnSuggestionPage" checked />';
-        }
-        else {
-            echo '    <input type="checkbox" name="showOnSuggestionPage" />';
-        }
-        echo ' '.$lang['fields']['showOnSuggestionPage'].'</span><br /><br />';
 
         //Ingredient Loop
         for ($i = 1; $i <= 8; $i++ ) {
@@ -145,13 +149,7 @@ if(isset($_GET['page']) and $_GET['page']=='editItem' and $_SESSION['username'] 
 
         echo '    <textarea name="adminDescription" class="inputFieldWide" placeholder="'.$lang['fields']['adminDescription'].'" rows="6">'.$item['adminDescription'].'</textarea><br />';
 
-        //Status Flag
-        if($status) {
-            echo '    <p><select name="status" class="inputField"><option value="active">'.$lang['states']['active'].'</option><option value="inactive">'.$lang['states']['inactive'].'</option></select></p>';
-        }
-        else {
-            echo '    <p><select name="status" class="inputField"><option value="active">'.$lang['states']['active'].'</option><option value="inactive" selected>'.$lang['states']['inactive'].'</option></select></p>';
-        }
+
     echo '    <input type="hidden" name="item" value="'.$_GET['item'].'"/>';
     echo '    <input type="hidden" name="editItem" />';
     echo '    <p><input type="submit" value="'.$lang['buttons']['change'].'" class="button" /></p>';

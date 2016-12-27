@@ -71,7 +71,9 @@ $lang = array(
         "itemUpdated1" => "Gegenstand <b>",
         "itemUpdated2" => "</b> wurde aktualisiert.",
         "itemDeleted1" => "Gegenstand <b>",
-        "itemDeleted2" => "</b> wurde gelöscht."
+        "itemDeleted2" => "</b> wurde gelöscht.",
+        "orderPlaced" => "Bestellung erfolgreich",
+        "tooMuchActiveOrders" => "Derzeit hast du zu viele offene Bestellungen. Warte bis alles abgearbeitet ist!"
     ),
     "confirmation" => array(
         "order" => "Willst du folgendes bestellen?",

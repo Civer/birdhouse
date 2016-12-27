@@ -98,24 +98,38 @@ Some of them are triggered from index and content as well.
 
     function setOrder($additionalInfo, $itemId) {
 
+        $pageSettings = getSettings();
+        include $_SERVER['DOCUMENT_ROOT']."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
         require $_SERVER['DOCUMENT_ROOT']."/ressources/config.php";
 
         $conn = getConnection();
 
-        $sql = "INSERT INTO orders (userId, additionalInfo, itemId, orderTime, done) VALUES (".$_SESSION['userid'].", '".utf8_decode($additionalInfo)."',".$itemId.", CURRENT_TIMESTAMP, 0)";
-        $conn->exec($sql);
+        $orders = getOrders($_SESSION['userid'], null);
 
-        //The following block is just used for push notifications
+        $activeOrders = array_filter($orders, function ($var) {
+            if(!$var['done']) {
+                return $var;
+            }
+        });
 
-            $options = array('cluster' => 'eu', 'encrypted' => true);
-            $pusher = new Pusher($config['push']['appKey'], $config['push']['appSecret'], $config['push']['appId'], $options);
+        if(count($activeOrders) >= 2) {
+            echo "<p class='error'>".$lang['texts']['tooMuchActiveOrders']."</p>";
+        }
+        else {
+            $sql = "INSERT INTO orders (userId, additionalInfo, itemId, orderTime, done) VALUES (".$_SESSION['userid'].", '".utf8_decode($additionalInfo)."',".$itemId.", CURRENT_TIMESTAMP, 0)";
+            $conn->exec($sql);
 
-            $data['title'] = 'Neue Bestellungen';
-            $data['message'] = 'Es liegt eine neue Bestellung von '.$_SESSION['username'].' vor.';
-            $pusher->trigger('adminInformation', 'newCocktail', $data);
+            echo "<p class='success'>".$lang['texts']['orderPlaced']."</p>";
 
-        #logTxt("SQL Executed. Order Set!");
+            //The following block is just used for push notifications
 
+                $options = array('cluster' => 'eu', 'encrypted' => true);
+                $pusher = new Pusher($config['push']['appKey'], $config['push']['appSecret'], $config['push']['appId'], $options);
+
+                $data['title'] = 'Neue Bestellungen';
+                $data['message'] = 'Es liegt eine neue Bestellung von '.$_SESSION['username'].' vor.';
+                $pusher->trigger('adminInformation', 'newCocktail', $data);
+        }
     }
 
 ##########################################################################

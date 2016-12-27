@@ -158,7 +158,7 @@ function createCocktailHTML(array) {
     var string = "";
 
     if(array.notes) {
-        string = "<p style='color: black'>Anmerkungen: <b>"+array.notes+"</b></p><br />";
+        string = "<p style='color: black'><span style='text-align: justify'>Anmerkungen: </span><b>"+array.notes+"</b></p><br />";
     }
     else {
         string = "Keine Anmerkungen<br /><br />"
@@ -201,7 +201,7 @@ function createCocktailHTML(array) {
     }
 
     string += "</table><br />";
-    string += array.adminDescription;
+    string += "<span style='text-align: justify !important'>"+array.adminDescription+"</span>";
 
     return string;
 }

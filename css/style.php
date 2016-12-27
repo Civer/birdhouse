@@ -303,9 +303,26 @@ span.ingredientCheckbox {
     -webkit-box-shadow: 1px 1px 4px <?=$inputFieldShadow?>;
     background: white;
     padding: 6px;
-    margin: 10;
+    margin: 10px;
     outline: none;
-    width: 150;
+    font-size: 0.75em;
+    text-align: center;
+}
+
+span.suggestionCheckbox {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid <?=$inputFieldBorder?>;
+    box-shadow: 1px 1px 4px <?=$inputFieldShadow?>;
+    -moz-box-shadow: 1px 1px 4px <?=$inputFieldShadow?>;
+    -webkit-box-shadow: 1px 1px 4px <?=$inputFieldShadow?>;
+    background: white;
+    padding: 6px;
+    margin: auto;
+    display: block;
+    width: 150px;
+    outline: none;
     font-size: 0.75em;
     text-align: center;
 }

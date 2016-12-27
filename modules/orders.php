@@ -111,12 +111,13 @@ if(isset($_GET['order']) and $_SESSION['username']) {
         $acceptItem = getItem($_GET['order']);
 
         echo '<div class="basicPage">';
-        echo "<p>Willst du folgendes bestellen?</p>";
+        echo "<p>".$lang['confirmation']['order']."</p>";
         echo "<p><b>".$acceptItem[0]['name']."</b></p>";
-        echo '<form action="#" method="post">';
+        echo '<form action="index.php" method="post">';
         echo '    <p><input type="text" name="description" class="inputField" placeholder="'.$lang['fields']['notes'].'" /></p>';
+        echo '    <p><input type="hidden" name="item" value="'.$_GET['order'].'" /></p>';
         echo '    <p><input type="hidden" name="order" /></p>';
-        echo '    <p><input type="submit" value="Bestellen" class="button" /></p>';
+        echo '    <p><input type="submit" value="'.$lang['buttons']['order'].'" class="button" /></p>';
         echo '</form>';
         echo '</div>';
     }

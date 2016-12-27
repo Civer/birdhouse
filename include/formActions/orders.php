@@ -16,8 +16,7 @@ This script is used to handle all form activities related to ordermanagement
 ##########################################################################
 
 if (isset($_POST['order'])) {
-    setOrder($_POST['description'],$_GET['order']);
-    echo '<META HTTP-EQUIV="Refresh" Content="0; URL=index.php">';
+    setOrder($_POST['description'],$_POST['item']);
 }
 
 /*

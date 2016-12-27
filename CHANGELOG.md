@@ -2,10 +2,23 @@
 
 ##History
 
+- v0.3b (27.12.2016)
 - v0.2.2b (26.12.2016)
 - v0.2.1b (23.12.2016)
 - v0.2b (23.12.2016)
 - v0.1b (21.12.2016)
+
+##v0.3b
+
+Install script
+
+###Features
+
+- Introduced the first install script version
+- Added an order cap (2 active orders per person)
+- Edited the styling of Item pages
+- Fixed some paragraphs and styling
+- Added more bundles
 
 ##v0.2.2b
 

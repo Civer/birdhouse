@@ -70,7 +70,9 @@ $lang = array(
         "itemUpdated1" => "Item <b>",
         "itemUpdated2" => "</b> updated.",
         "itemDeleted1" => "Item <b>",
-        "itemDeleted2" => "</b> deleted."
+        "itemDeleted2" => "</b> deleted.",
+        "orderPlaced" => "Order placed",
+        "tooMuchActiveOrders" => "Right now you've too much open orders! Please wait until they are done."        
     ),
     "confirmation" => array(
         "order" => "Do you really want to order?",
