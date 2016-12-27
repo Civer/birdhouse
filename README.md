@@ -8,11 +8,7 @@ The idea of the project lies in 2015/16 when I hosted a lot of partys where I se
 
 #Installation
 
-1. Create a database and run the SQLs provided in the INSTALL folder. I would highly suggest to install with dummy data!
-2. Rename the config.php in ressources folder
-3. Rename the log.txt file in the logs folder
-4. Change the config file (ressources folder) to match your data.
-5. Run the application on your website.
+The project has an included install.php which will automatically run when a DB connection fails. Run the install script (pusher data can be invalid if you don't have a pusher app) and you are good to go.
 
 Attention: We are in BETA phase right now, so a lot of changes have to be done in the database or in the config file!
 
