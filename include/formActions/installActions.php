@@ -40,7 +40,7 @@ if (isset($_POST['generalPageSettings'])) {
 
 //Create Config file
 
-    file_put_contents($_SERVER['DOCUMENT_ROOT']."/ressources/config.php", '<?php
+    file_put_contents(dirname(dirname(__DIR__))."/ressources/config.php", '<?php
 
     ##########################################################################
     ##########################################################################
@@ -70,22 +70,22 @@ if (isset($_POST['generalPageSettings'])) {
             "appId" => "'.$pusherappid.'"
         ),
         "paths" => array(
-            "ressources" => $_SERVER["DOCUMENT_ROOT"] . "/ressources",
-            "images" => $_SERVER["DOCUMENT_ROOT"] . "/img"
+            "ressources" => dirname(__DIR__) . "/ressources",
+            "images" => dirname(__DIR__) . "/img"
         ),
         "key" => array(
             "hash" => ".89f73hfeuenf.sjei",
         ),
         "logfile" => array(
-            "path" => $_SERVER["DOCUMENT_ROOT"]."/logs/log.txt"
+            "path" => dirname(__DIR__)."/logs/log.txt"
         )
     );
 ?>');
 
 
 
-require $_SERVER['DOCUMENT_ROOT']."/ressources/config.php";
-require $_SERVER['DOCUMENT_ROOT']."/include/general.php";
+require dirname(dirname(__DIR__))."/ressources/config.php";
+require dirname(dirname(__DIR__))."/include/general.php";
 
 //Prepare SQL
 
@@ -380,7 +380,7 @@ $conn->exec($sql);
 
 $conn = null;
 
-unlink($_SERVER['DOCUMENT_ROOT'].'install.php');
+unlink(dirname(dirname(__DIR__)).'install.php');
 
 echo '<META HTTP-EQUIV="Refresh" Content="0; URL=index.php">';
 

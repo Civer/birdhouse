@@ -17,7 +17,7 @@ This file is used to install Birdhouse Party Manager Application
 
 session_start();
 
-require $_SERVER['DOCUMENT_ROOT']."/include/formActions/installActions.php";
+require __DIR__."/include/formActions/installActions.php";
 
 ?>
 
@@ -27,7 +27,7 @@ require $_SERVER['DOCUMENT_ROOT']."/include/formActions/installActions.php";
         <meta charset="utf-8" />
     </head>
     <body>
-        <img class='logo' src='/img/logo.png' />
+        <img class='logo' src='./img/logo.png' />
         <div class="container">
             <p class='paragraphTitle'><b></b></p><br />
               <form action="#" method="post">

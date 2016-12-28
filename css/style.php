@@ -16,7 +16,7 @@ As you can see it is created as a php file to get the colors from database
 ##########################################################################
 ##########################################################################
 
-    require $_SERVER['DOCUMENT_ROOT'].'/include/general.php';
+    require dirname(__DIR__).'/include/general.php';
     $colorArray = getColors();
 
     $background = $colorArray['background'];

@@ -99,8 +99,8 @@ Some of them are triggered from index and content as well.
     function setOrder($additionalInfo, $itemId) {
 
         $pageSettings = getSettings();
-        include $_SERVER['DOCUMENT_ROOT']."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
-        require $_SERVER['DOCUMENT_ROOT']."/ressources/config.php";
+        include dirname(dirname(__DIR__))."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
+        require dirname(dirname(__DIR__))."/ressources/config.php";
 
         $conn = getConnection();
 
@@ -186,7 +186,7 @@ Some of them are triggered from index and content as well.
     function deleteOrder($orderId) {
 
         $pageSettings = getSettings();
-        include $_SERVER['DOCUMENT_ROOT']."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
+        include dirname(dirname(__DIR__))."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
 
         $conn = getConnection();
 
@@ -213,7 +213,7 @@ Some of them are triggered from index and content as well.
     function deleteOrders() {
 
         $pageSettings = getSettings();
-        include $_SERVER['DOCUMENT_ROOT']."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
+        include dirname(dirname(__DIR__))."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
 
         $conn = getConnection();
 

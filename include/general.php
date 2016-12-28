@@ -45,7 +45,7 @@ Some of them are triggered from index and content as well.
 ##########################################################################
 
     function logTxt($text) {
-        require $_SERVER['DOCUMENT_ROOT']."/ressources/config.php";
+        require dirname(__DIR__)."/ressources/config.php";
         $logfile = $config['logfile']['path'];
         $file = fopen($logfile, "a") or die("Unable to open file! "."Test: ".$logfile);
         $logdate = date("d.m.Y - H:i:s").": ";
@@ -69,7 +69,7 @@ Some of them are triggered from index and content as well.
 
 
     function getConnection() {
-        require $_SERVER['DOCUMENT_ROOT']."/ressources/config.php";
+        require dirname(__DIR__)."/ressources/config.php";
 
         $server = $config['db']['host'];
         $dbname = $config['db']['dbname'];

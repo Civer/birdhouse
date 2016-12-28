@@ -17,7 +17,7 @@ as well as loading the content related scripts
 ##########################################################################
 
 try {
-    if(!file_exists($_SERVER['DOCUMENT_ROOT']."/ressources/config.php")) {
+    if(!file_exists(__DIR__."/ressources/config.php")) {
         throw new Exception("Running install file");
     }
 }
@@ -27,11 +27,11 @@ catch(Exception $e) {
 
 session_start();
 
-require $_SERVER['DOCUMENT_ROOT']."/include/plugins/PusherLocal.php";
-require $_SERVER['DOCUMENT_ROOT']."/ressources/config.php";
+require __DIR__."/include/plugins/PusherLocal.php";
+require __DIR__."/ressources/config.php";
 
 
-require $_SERVER['DOCUMENT_ROOT']."/include/general.php";
+require __DIR__."/include/general.php";
 
 
 foreach (glob("./include/methods/*.php") as $filename) {
@@ -39,7 +39,7 @@ foreach (glob("./include/methods/*.php") as $filename) {
 }
 
 $pageSettings = getSettings();
-require $_SERVER['DOCUMENT_ROOT']."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
+require __DIR__."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
 
 foreach (glob("./include/formActions/*.php") as $filename) {
     require $filename;

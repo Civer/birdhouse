@@ -306,7 +306,7 @@ Some of them are triggered from index and content as well.
 function activateItem($id) {
 
     $pageSettings = getSettings();
-    include $_SERVER['DOCUMENT_ROOT']."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
+    include dirname(dirname(__DIR__))."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
 
     $conn = getConnection();
 
@@ -334,7 +334,7 @@ function activateItem($id) {
 function deactivateItem($id) {
 
     $pageSettings = getSettings();
-    include $_SERVER['DOCUMENT_ROOT']."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
+    include dirname(dirname(__DIR__))."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
 
     $conn = getConnection();
 
@@ -483,7 +483,7 @@ function deactivateItem($id) {
     function createCategory($category) {
 
         $pageSettings = getSettings();
-        include $_SERVER['DOCUMENT_ROOT']."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
+        include dirname(dirname(__DIR__))."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
 
         $conn = getConnection();
 
@@ -550,7 +550,7 @@ function deactivateItem($id) {
 function deleteCategory($categoryId) {
 
     $pageSettings = getSettings();
-    include $_SERVER['DOCUMENT_ROOT']."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
+    include dirname(dirname(__DIR__))."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
 
     $itemArray = getItems($categoryId);
 
@@ -731,7 +731,7 @@ function deleteCategory($categoryId) {
     function createSubcategory($subcategory, $categoryId) {
 
         $pageSettings = getSettings();
-        include $_SERVER['DOCUMENT_ROOT']."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
+        include dirname(dirname(__DIR__))."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
 
         $conn = getConnection();
 
@@ -798,7 +798,7 @@ function deleteCategory($categoryId) {
     function deleteSubcategory($subcategory) {
 
         $pageSettings = getSettings();
-        include $_SERVER['DOCUMENT_ROOT']."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
+        include dirname(dirname(__DIR__))."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
 
         $conn = getConnection();
 
@@ -832,7 +832,7 @@ function deleteCategory($categoryId) {
 function createItem($itemArray) {
 
     $pageSettings = getSettings();
-    include $_SERVER['DOCUMENT_ROOT']."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
+    include dirname(dirname(__DIR__))."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
 
     if($itemArray['status'] == 'active') {
         $status = 1;
@@ -945,7 +945,7 @@ function editItem($itemArray) {
     $conn->exec($sql);
 
     $pageSettings = getSettings();
-    include $_SERVER['DOCUMENT_ROOT']."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
+    include dirname(dirname(__DIR__))."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
 
     echo "<p class='success'>".$lang['texts']['itemUpdated1'].$itemArray['name'].$lang['texts']['itemUpdated2']."</p>";
 }
@@ -971,7 +971,7 @@ function editItem($itemArray) {
         $conn->exec($sql);
 
         $pageSettings = getSettings();
-        include $_SERVER['DOCUMENT_ROOT']."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
+        include dirname(dirname(__DIR__))."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
 
         echo "<p class='success'>".$lang['texts']['itemDeleted1'].$id.$lang['texts']['itemDeleted2']."</p>";
     }

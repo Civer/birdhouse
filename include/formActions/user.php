@@ -37,8 +37,8 @@ if (isset($_POST['changeAdminRights'])) {
 }
 
 if (isset($_POST['resetPassword'])) {
-    require $_SERVER['DOCUMENT_ROOT']."/ressources/config.php";
-    $initPass = $config['key']['initPass'];
+    $siteSettings = getSettings();
+    $initPass = $siteSettings[0]['initialPassword'];
     changePassword($_POST['resetPassword'], $initPass, $initPass);
 }
 

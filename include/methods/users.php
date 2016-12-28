@@ -50,8 +50,8 @@ Some of them are triggered from index and content as well.
     function loginUser($providedUsername, $providedPassword) {
 
         $pageSettings = getSettings();
-        include $_SERVER['DOCUMENT_ROOT']."/ressources/config.php";
-        include $_SERVER['DOCUMENT_ROOT']."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
+        include dirname(dirname(__DIR__))."/ressources/config.php";
+        include dirname(dirname(__DIR__))."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
 
         $conn = getConnection();
 
@@ -191,8 +191,8 @@ Some of them are triggered from index and content as well.
     function changePassword($userId,$password,$passwordVerify) {
 
         $pageSettings = getSettings();
-        include $_SERVER['DOCUMENT_ROOT']."/ressources/config.php";
-        include $_SERVER['DOCUMENT_ROOT']."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
+        include dirname(dirname(__DIR__))."/ressources/config.php";
+        include dirname(dirname(__DIR__))."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
 
         if ($password == $passwordVerify) {
             if(strlen($password) >= 8) {
@@ -231,9 +231,9 @@ Some of them are triggered from index and content as well.
 
     function createUser($username) {
 
-        require $_SERVER['DOCUMENT_ROOT']."/ressources/config.php";
+        require dirname(dirname(__DIR__))."/ressources/config.php";
         $siteSettings = getSettings();
-        include $_SERVER['DOCUMENT_ROOT']."/ressources/lang/".$siteSettings[0]['lang'].".php"; //Get the proper language from DB
+        include dirname(dirname(__DIR__))."/ressources/lang/".$siteSettings[0]['lang'].".php"; //Get the proper language from DB
         $initPass = $siteSettings[0]['initialPassword'];
 
         $hashkey = $config['key']['hash'];
@@ -264,7 +264,7 @@ Some of them are triggered from index and content as well.
     function changeAdminRights($userId) {
 
         $pageSettings = getSettings();
-        include $_SERVER['DOCUMENT_ROOT']."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
+        include dirname(dirname(__DIR__))."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
 
         $conn = getConnection();
 
@@ -306,7 +306,7 @@ Some of them are triggered from index and content as well.
     function deleteUser($userId) {
 
         $pageSettings = getSettings();
-        include $_SERVER['DOCUMENT_ROOT']."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
+        include dirname(dirname(__DIR__))."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
 
         $conn = getConnection();
 
@@ -335,7 +335,7 @@ Some of them are triggered from index and content as well.
     function changeSettings($userId,$descEnable, $ingrEnable) {
 
         $pageSettings = getSettings();
-        include $_SERVER['DOCUMENT_ROOT']."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
+        include dirname(dirname(__DIR__))."/ressources/lang/".$pageSettings[0]['lang'].".php"; //Get the proper language from DB
 
         $conn = getConnection();
 
