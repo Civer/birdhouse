@@ -10,6 +10,8 @@ The idea of the project lies in 2015/16 when I hosted a lot of partys where I se
 
 The project has an included install.php which will automatically run when a DB connection fails. Run the install script (pusher data can be invalid if you don't have a pusher app) and you are good to go.
 
+Be sure to delete the install.php after the installation!
+
 Attention: We are in BETA phase right now, so there could be missing information in config and DB files!
 
 #Copyright Notice and License
