@@ -83,6 +83,9 @@ if (isset($_POST['generalPageSettings'])) {
 ?>');
 
 
+if(!file_exists(dirname(dirname(__DIR__))."/ressources/config.php")) {
+    die('Unable to create config.php. Please check PHP error log for more informations!');
+}
 
 require dirname(dirname(__DIR__))."/ressources/config.php";
 require dirname(dirname(__DIR__))."/include/general.php";
@@ -365,6 +368,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 }
 
 $conn = getConnection();
+
+if(!$conn) {
+    die('Unable to establish database connection!');
+}
+
 $conn->exec($sql);
 
 //Create Userpassword
@@ -379,8 +387,6 @@ $sql = "INSERT INTO users (username, password, creationdate, administrator) VALU
 $conn->exec($sql);
 
 $conn = null;
-
-unlink(dirname(dirname(__DIR__)).'install.php');
 
 echo '<META HTTP-EQUIV="Refresh" Content="0; URL=index.php">';
 
