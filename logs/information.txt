@@ -1,1 +1,3 @@
-The log File contains all information logged by the logTxt() funciton
+The log File contains all information logged by the logTxt() function.
+
+This file can be deleted. It is only necessary for proper Git presentation.
