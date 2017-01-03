@@ -29,7 +29,7 @@ Files in the modules folder are used for handling the visible content
 if(isset($_GET['page']) and $_GET['page']=='login') {
     echo'<div class="basicPage">';
     echo"   <p class='paragraphTitle'><b>".$lang['titles']['login']."</b></p><br />";
-    echo'   <form action="#" method="post">';
+    echo'   <form action="index.php" method="post">';
     echo'       <input type="text" name="username" placeholder="'.$lang['fields']['username'].'" class="inputField" /><br />';
     echo'       <input type="password" name="password" placeholder="'.$lang['fields']['password'].'" class="inputField" /><br />';
     echo'       <input type="hidden" name="loginForm" /><br />';

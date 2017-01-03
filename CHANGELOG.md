@@ -2,11 +2,22 @@
 
 ##History
 
+- v0.3.1b (03.01.2016)
 - v0.3b (27.12.2016)
 - v0.2.2b (26.12.2016)
 - v0.2.1b (23.12.2016)
 - v0.2b (23.12.2016)
 - v0.1b (21.12.2016)
+
+##v0.3.1b
+
+Bugfixes and statistics core functionalities (work in progress)
+
+###Features
+
+- Provided core functionalities for statistics (check work by entering statistics.php)
+- Fixed some styling issues
+- Added new tables for statistics (check Install script changes for more information)
 
 ##v0.3b
 

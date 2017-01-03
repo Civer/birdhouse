@@ -537,6 +537,44 @@ span.subtitleright {
 /*************************************************/
 /*
 
+    8 - Statistics Page
+
+*/
+/*************************************************/
+
+div.dayStatistics {
+    border: 1px solid <?=$buttonBorder?>;
+    width: 100%;
+    height: 90%;
+    margin: 0;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+
+div.cocktailStatistics {
+    border: 1px solid <?=$buttonBorder?>;
+    width: 50%;
+    height: 10%;
+    margin: 0;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+}
+
+div.allTimeStatistiscs {
+    border: 1px solid <?=$buttonBorder?>;
+    width: 50%;
+    height: 10%;
+    margin: 0;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+}
+
+/*************************************************/
+/*
+
     9 - Smartphone Layout
 
 */

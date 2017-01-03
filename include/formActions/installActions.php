@@ -178,6 +178,17 @@ CREATE TABLE IF NOT EXISTS `orders` (
   KEY `id` (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+CREATE TABLE IF NOT EXISTS `statistics` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL,
+  `itemId` int(11) NOT NULL,
+  `categoryId` int(11) NOT NULL,
+  `subcategoryId` int(11) NOT NULL,
+  `orderTime` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Used to store historic information about orders. Used for Leaderboards' AUTO_INCREMENT=1 ;
+
 CREATE TABLE IF NOT EXISTS `pageColors` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `bundle` varchar(150) NOT NULL,
@@ -307,6 +318,17 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `solveTime` datetime NOT NULL,
   KEY `id` (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `statistics` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL,
+  `itemId` int(11) NOT NULL,
+  `categoryId` int(11) NOT NULL,
+  `subcategoryId` int(11) NOT NULL,
+  `orderTime` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Used to store historic information about orders. Used for Leaderboards' AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `pageColors` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

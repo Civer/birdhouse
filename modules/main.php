@@ -558,7 +558,7 @@ if((!isset($_GET['page']) and !isset($_GET['order'])) or isset($_GET['page']) an
     */
     ##########################################################################
 
-    if(isset($_SESSION['username']) and $_SESSION['useradmin'] and count($allItemsInactive) != 0) {
+    if(isset($_SESSION['username']) and $_SESSION['useradmin'] and count($allItemsInactive) != 0 and isset($_GET['cat'])) {
 
         echo "<br /><hr /><br />";
 

@@ -73,19 +73,19 @@ Some of them are triggered from index and content as well.
                 $_SESSION['descEnable'] = $row['descEnable'];
                 $_SESSION['ingrEnable'] = $row['ingrEnable'];
                 logTxt("SUCCESS: ".$providedUsername." logged in!");
-                echo '<META HTTP-EQUIV="Refresh" Content="0; URL=index.php">';
+                //echo '<META HTTP-EQUIV="Refresh" Content="0; URL=index.php">';
 
             }
             else {
                 echo "<p class='error'>".$lang['texts']['LoginFailed']."</p>";
                 logTxt("ERROR: Username exists but Password is wrong!");
-                echo '<META HTTP-EQUIV="Refresh" Content="0; URL=index.php?page=login&error=wp">';
+                //echo '<META HTTP-EQUIV="Refresh" Content="0; URL=index.php?page=login&error=wp">';
             }
         }
         if($index == 0) {
             echo "<p class='error'>".$lang['texts']['LoginFailed']."</p>";
             logTxt("ERROR: Username does not exist!");
-            echo '<META HTTP-EQUIV="Refresh" Content="0; URL=index.php?page=login&error=wp">';
+            //echo '<META HTTP-EQUIV="Refresh" Content="0; URL=index.php?page=login&error=wp">';
         }
 
         $conn = null; #Close Connection

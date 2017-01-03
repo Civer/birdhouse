@@ -119,6 +119,8 @@ Some of them are triggered from index and content as well.
             $sql = "INSERT INTO orders (userId, additionalInfo, itemId, orderTime, done) VALUES (".$_SESSION['userid'].", '".utf8_decode($additionalInfo)."',".$itemId.", CURRENT_TIMESTAMP, 0)";
             $conn->exec($sql);
 
+            setStatistics($_SESSION['userid'], $itemId);
+
             echo "<p class='success'>".$lang['texts']['orderPlaced']."</p>";
 
             //The following block is just used for push notifications
